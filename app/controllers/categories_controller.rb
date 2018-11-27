@@ -5,6 +5,7 @@ class CategoriesController < ApplicationController
 
   def show
     @category = Category.find(params[:id])
+    # @post = @category.post
   end
 
   def new
@@ -12,8 +13,8 @@ class CategoriesController < ApplicationController
   end
 
   def create
-    category = Category.create(params[:category])
-    redirect_to category_path(category)
+    @category = Category.create(params[:category])
+    redirect_to category_path(@category)
   end
 
   def edit
@@ -21,8 +22,8 @@ class CategoriesController < ApplicationController
   end
 
   def update
-    category = Category.find(params[:id])
-    category.update(params.require(:category))
-    redirect_to category_path(category)
+    @category = Category.find(params[:id])
+    @category.update(params.require(:category))
+    redirect_to category_path(@category)
   end
 end
